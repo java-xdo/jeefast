@@ -59,8 +59,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
 	}
 
 	@Override
-	public SysUser queryByUserName(String username) {
-		return sysUserDao.queryByUserName(username);
+	public SysUser queryByUserName(String username,String deptId) {
+		return sysUserDao.queryByUserName(username, deptId);
 	}
 	
 	@Override

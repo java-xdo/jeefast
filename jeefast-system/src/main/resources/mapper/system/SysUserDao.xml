@@ -61,7 +61,7 @@
 	</select>
 	
 	<select id="queryByUserName" resultType="SysUser">
-		select * from sys_user where username = #{username}
+		select * from sys_user where username = #{username} and dept_id = #{deptId}
 	</select>
 	
 	<delete id="deleteBatch">

@@ -61,14 +61,14 @@ public class SysLoginController {
 	 * 登录
 	 */
 	@RequestMapping(value = "/sys/login", method = RequestMethod.POST)
-	public Map<String, Object> login(String username, String password, String captcha)throws IOException {
+	public Map<String, Object> login(String username, String password, String captcha,String deptId)throws IOException {
 		String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
-		if(!captcha.equalsIgnoreCase(kaptcha)){
-			return R.error("验证码不正确");
-		}
+//		if(!captcha.equalsIgnoreCase(kaptcha)){
+//			return R.error("验证码不正确");
+//		}
 
 		//用户信息
-		SysUser user = sysUserService.queryByUserName(username);
+		SysUser user = sysUserService.queryByUserName(username,deptId);
 
 		//账号不存在、密码错误
 		if(user == null || !user.getPassword().equals(new Sha256Hash(password, user.getSalt()).toHex())) {

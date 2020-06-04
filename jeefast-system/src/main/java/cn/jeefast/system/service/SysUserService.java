@@ -39,7 +39,7 @@ public interface SysUserService extends IService<SysUser> {
 	/**
 	 * 根据用户名，查询系统用户
 	 */
-	SysUser queryByUserName(String username);
+	SysUser queryByUserName(String username,String deptId);
 	
 	/**
 	 * 删除用户

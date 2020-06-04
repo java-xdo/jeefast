@@ -3,6 +3,8 @@ package cn.jeefast.system.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
@@ -36,7 +38,7 @@ public interface SysUserDao extends BaseMapper<SysUser> {
 	/**
 	 * 根据用户名，查询系统用户
 	 */
-	SysUser queryByUserName(String username);
+	SysUser queryByUserName(@Param("username")String username,@Param("deptId")String deptId);
 	
 	int deleteBatch(Object[] id);	
 	
