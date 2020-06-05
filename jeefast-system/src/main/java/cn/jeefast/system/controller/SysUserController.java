@@ -131,9 +131,9 @@ public class SysUserController extends BaseController {
 	@Log("修改用户")
 	@RequestMapping("/update")
 	@RequiresPermissions("sys:user:update")
-	public R update(@RequestBody SysUser user){
+	public R update( SysUser user){
 		ValidatorUtils.validateEntity(user, UpdateGroup.class);
-		
+		user.setSalt(getUser().getSalt());
 		user.setCreateUserId(getUserId());
 		sysUserService.update(user);
 		
