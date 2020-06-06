@@ -115,7 +115,7 @@ public class SysUserController extends BaseController {
 	@Log("保存用户")
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:user:save")
-	public R save(@RequestBody SysUser user){
+	public R save(SysUser user){
 		ValidatorUtils.validateEntity(user, AddGroup.class);
 		
 		user.setCreateTime(new Date());
@@ -146,16 +146,10 @@ public class SysUserController extends BaseController {
 	@Log("删除用户")
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:user:delete")
-	public R delete(@RequestBody Long[] userIds){
-		if(ArrayUtils.contains(userIds, 1L)){
-			return R.error("系统管理员不能删除");
-		}
+	public R delete( String userId){
 		
-		if(ArrayUtils.contains(userIds, getUserId())){
-			return R.error("当前用户不能删除");
-		}
 		
-		sysUserService.deleteBatch(userIds);
+		sysUserService.deleteUserById(userId);
 		
 		return R.ok();
 	}

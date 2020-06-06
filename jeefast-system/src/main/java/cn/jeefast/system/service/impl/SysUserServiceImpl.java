@@ -38,7 +38,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
 	@Override
 	//@DataFilter(tableAlias = "u", user = false)
 	public Page<SysUser> queryPageList(Page<SysUser> page, Map<String, Object> map) {
-		page.setRecords(sysUserDao.queryPageList(page, map));
+		page.setRecords(sysUserDao.queryUserList(page, map));
 		return page;
 	}
 	
@@ -74,7 +74,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
 		sysUserDao.insert(user);
 		
 		//保存用户与角色关系
-		sysUserRoleService.saveOrUpdate(user.getUserId(), user.getRoleIdList());
+		//sysUserRoleService.saveOrUpdate(user.getUserId(), user.getRoleIdList());
 	}
 
 	@Override
@@ -95,6 +95,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
 	@Transactional
 	public void deleteBatch(Long[] userId) {
 		sysUserDao.deleteBatch(userId);
+	}
+
+	@Override
+	public Integer deleteUserById(String userId) {
+		// TODO Auto-generated method stub
+		return sysUserDao.deleteUserById(userId);
 	}
 	
 }

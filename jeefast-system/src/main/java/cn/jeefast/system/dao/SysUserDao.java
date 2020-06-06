@@ -42,4 +42,10 @@ public interface SysUserDao extends BaseMapper<SysUser> {
 	
 	int deleteBatch(Object[] id);	
 	
+	List<SysUser> queryUserList(Page<SysUser> page, Map<String, Object> map);
+	
+	Integer deleteUserById (String userId);  
+	
+	
+	
 }

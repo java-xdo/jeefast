@@ -95,6 +95,19 @@ public class SysUser extends Model<SysUser> {
 	@TableField(exist=false)
 	private Long createUserId;
 	
+	private String isAdmin;
+	
+	
+	
+	
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	private String name;
 	
 

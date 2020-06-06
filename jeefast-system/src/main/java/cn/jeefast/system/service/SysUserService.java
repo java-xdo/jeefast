@@ -17,20 +17,21 @@ import cn.jeefast.system.entity.SysUser;
  * @since 2017-10-28
  */
 public interface SysUserService extends IService<SysUser> {
-	
+
 	Page<SysUser> queryPageList(Page<SysUser> pageUtil, Map<String, Object> map);
-	
+
 	/**
 	 * 查询用户列表
 	 */
 	List<SysUser> queryList(Map<String, Object> map);
-	
+
 	/**
 	 * 查询用户的所有权限
-	 * @param userId  用户ID
+	 * 
+	 * @param userId 用户ID
 	 */
 	List<String> queryAllPerms(Long userId);
-	
+
 	/**
 	 * 查询用户的所有菜单ID
 	 */
@@ -39,8 +40,8 @@ public interface SysUserService extends IService<SysUser> {
 	/**
 	 * 根据用户名，查询系统用户
 	 */
-	SysUser queryByUserName(String username,String deptId);
-	
+	SysUser queryByUserName(String username, String deptId);
+
 	/**
 	 * 删除用户
 	 */
@@ -49,5 +50,7 @@ public interface SysUserService extends IService<SysUser> {
 	void save(SysUser user);
 
 	void update(SysUser user);
-	
+
+	Integer deleteUserById(String userId);
+
 }
