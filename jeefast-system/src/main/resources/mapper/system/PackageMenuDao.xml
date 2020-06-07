@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jeefast.system.dao.PackageMenuDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap"
+		type="cn.jeefast.system.entity.PackageMenu">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="menu_price" property="menuPrice" />
+		<result column="type" property="type" />
+		<result column="menu_food" property="menuFood" />
+		<result column="menu_snack" property="menuSnack" />
+		<result column="menu_drink" property="menuDrink" />
+		<result column="creat_name" property="creatName" />
+		<result column="create_id" property="createId" />
+	</resultMap>
+
+	<select id="queryPackageMenuList" resultMap="BaseResultMap">
+		SELECT
+		a.id,a.name,a.menu_drink,a.menu_food,a.menu_price,a.menu_snack,a.type,a.creat_name
+		FROM package_menu a
+		<where>
+
+			<if test="name != null and name.trim() != ''">
+				and a.`name` like concat('%',#{name},'%')
+			</if>
+			<if test="minPrice != null and minPrice != ''">
+				and a.menu_price &gt; #{minPrice}
+			</if>
+			<if test="maxPrice != null and maxPrice != ''">
+				and a.menu_price &lt; #{maxPrice}
+			</if>
+			<if test="typearr != null and typearr != ''">
+				and a.type in
+				<foreach item="item" index="index" collection="typearr" open="("
+					separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+
+
+
+
+
+
+		</where>
+	</select>
+	<delete id="deletePackageMenuById">
+		delete from package_menu where id = #{id}
+	</delete>
+
+</mapper>
